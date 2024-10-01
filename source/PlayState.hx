@@ -14,7 +14,7 @@ class PlayState extends FlxState {
 	override public function update(elapsed:Float) {
 		super.update(elapsed);
 
-		if (Input.justPressed('o'))
+		if (FlxG.keys.justPressed.O)
 			FlxG.switchState(new OptionsState());
 	}
 }

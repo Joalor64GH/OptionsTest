@@ -42,20 +42,21 @@ class OptionsState extends FlxState {
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 
-		if (Input.justPressed('up') || Input.justPressed('down'))
-			changeSelection(Input.justPressed('up') ? -1 : 1);
+		if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.DOWN)
+			changeSelection(FlxG.keys.justPressed.UP ? -1 : 1);
 
-        if (Input.justPressed('right') || Input.justPressed('left')) {
+        if (FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.LEFT) {
             if (options[curSelected].type != OptionType.Function)
-			    changeValue(Input.justPressed('right') ? 1 : -1);
+			    changeValue(FlxG.keys.justPressed.RIGHT ? 1 : -1);
         }
 
-        if (Input.justPressed('accept')) {
-            if (options[curSelected] != null)
+        if (FlxG.keys.justPressed.ENTER) {
+			final option:Option = options[curSelected];
+            if (option[curSelected] != null)
                 option.execute();
         }
 
-		if (Input.justPressed('exit')) {
+		if (FlxG.keys.justPressed.ESCAPE) {
 			FlxG.switchState(new PlayState());
 			SaveData.saveSettings();
 		}
@@ -71,7 +72,7 @@ class OptionsState extends FlxState {
 	}
 
     private function changeValue(direction:Int = 0):Void {
-		final option:Option = options[selected];
+		final option:Option = options[curSelected];
 
 		if (option != null) {
 			option.changeValue(direction);
