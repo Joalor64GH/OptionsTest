@@ -16,7 +16,7 @@ class Input
 		'right' => {key: RIGHT, gamepad: DPAD_RIGHT},
 		'up' => {key: UP, gamepad: DPAD_UP},
 		'left' => {key: LEFT, gamepad: DPAD_LEFT},
-		'accept' => {key: ENTER, SPACE, gamepad: A},
+		'accept' => {key: ENTER, gamepad: A},
 		'exit' => {key: ESCAPE, gamepad: B},
 	];
 
