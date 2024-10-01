@@ -74,6 +74,6 @@ class Option
 				formattedString = name;
 		}
 
-		return formattedString.toUpperCase();
+		return formattedString;
 	}
 }
