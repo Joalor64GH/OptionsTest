@@ -1,3 +1,14 @@
 #if !macro
-import Paths;
+import flixel.*;
+import flixel.util.*;
+import flixel.math.*;
+import flixel.input.gamepad.FlxGamepadInputID;
+import flixel.input.gamepad.FlxGamepad;
+import flixel.input.keyboard.FlxKey;
+
+using StringTools;
+
+#if !debug
+@:noDebug
+#end
 #end
