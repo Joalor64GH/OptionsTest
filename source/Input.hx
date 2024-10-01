@@ -22,14 +22,12 @@ class Input
 
 	public static function justPressed(tag:String):Bool
 	{
-		final bind:Null<Bind> = binds.get(tag);
-
         if (FlxG.gamepads.lastActive != null) {
-            for (b in bind)
-		        if (FlxG.gamepads.checkStatus(b.gamepad, JUST_PRESSED))
+            for (b in binds.get(tag))
+		        if (FlxG.gamepads.anyJustPressed(b.gamepad))
 			        return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_PRESSED);
         } else {
-            for (b in bind)
+            for (b in binds.get(tag))
                 if (FlxG.keys.checkStatus(b.key, JUST_PRESSED))
 			        return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_PRESSED);
         }
@@ -39,14 +37,12 @@ class Input
 
 	public static function pressed(tag:String):Bool
 	{
-		final bind:Null<Bind> = binds.get(tag);
-
         if (FlxG.gamepads.lastActive != null) {
-            for (b in bind)
-		        if (FlxG.gamepads.checkStatus(b.gamepad, PRESSED))
+            for (b in binds.get(tag))
+		        if (FlxG.gamepads.anyJustPressed(b.gamepad))
 			        return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), PRESSED);
         } else {
-            for (b in bind)
+            for (b in binds.get(tag))
                 if (FlxG.keys.checkStatus(b.key, PRESSED))
 			        return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), PRESSED);
         }
@@ -56,14 +52,12 @@ class Input
 
 	public static function justReleased(tag:String):Bool
 	{
-		final bind:Null<Bind> = binds.get(tag);
-
         if (FlxG.gamepads.lastActive != null) {
-            for (b in bind)
-		        if (FlxG.gamepads.checkStatus(b.gamepad, JUST_RELEASED))
+            for (b in binds.get(tag))
+		        if (FlxG.gamepads.anyJustPressed(b.gamepad))
 			        return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_RELEASED);
         } else {
-            for (b in bind)
+            for (b in binds.get(tag))
                 if (FlxG.keys.checkStatus(b.key, JUST_RELEASED))
 			        return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_RELEASED);
         }
