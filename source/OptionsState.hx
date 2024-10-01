@@ -52,7 +52,7 @@ class OptionsState extends FlxState {
 
         if (FlxG.keys.justPressed.ENTER) {
 			final option:Option = options[curSelected];
-            if (option[curSelected] != null)
+            if (option != null)
                 option.execute();
         }
 
