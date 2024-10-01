@@ -2,6 +2,7 @@
 import flixel.*;
 import flixel.util.*;
 import flixel.math.*;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.input.keyboard.FlxKey;
