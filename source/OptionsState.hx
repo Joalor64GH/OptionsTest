@@ -6,7 +6,7 @@ class OptionsState extends FlxState {
 	var options:Array<Option> = [
         new Option('Boolean', OptionType.Toggle, SaveData.settings.option1),
         new Option('Int', OptionType.Integer(1, 10, 1), SaveData.settings.option2),
-        new Option('Options', OptionType.Choice('easy', 'medium', 'hard'), SaveData.settings.option3),
+        new Option('Options', OptionType.Choice(['easy', 'medium', 'hard']), SaveData.settings.option3),
         new Option('Float', OptionType.Decimal(0, 1, 0.1), SaveData.settings.option4)
     ];
 	var grpOptions:FlxTypedGroup<FlxText>;

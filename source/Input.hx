@@ -5,31 +5,31 @@ import flixel.input.keyboard.FlxKey;
 
 typedef Bind =
 {
-	key:Array<FlxKey>,
-	gamepad:Array<FlxGamepadInputID>
+	key:FlxKey,
+	gamepad:FlxGamepadInputID
 }
 
 class Input
 {
-	public static var binds(default, null):Map<String, Bind> = [
-		'down' => {key: [DOWN, S], gamepad: [DPAD_DOWN, LEFT_SHOULDER]},
-		'right' => {key: [RIGHT, D], gamepad: [DPAD_RIGHT, RIGHT_TRIGGER]},
-		'up' => {key: [UP, W], gamepad: [DPAD_UP, RIGHT_SHOULDER]},
-		'left' => {key: [LEFT, A], gamepad: [DPAD_LEFT, LEFT_TRIGGER]},
-		'accept' => {key: [ENTER, SPACE], gamepad: [A, START]},
-		'exit' => {key: [ESCAPE, BACKSPACE], gamepad: [B, BACK]},
+	public static var binds:Map<String, Bind> = [
+		'down' => {key: DOWN, gamepad: DPAD_DOWN},
+		'right' => {key: RIGHT, gamepad: DPAD_RIGHT},
+		'up' => {key: UP, gamepad: DPAD_UP},
+		'left' => {key: LEFT, gamepad: DPAD_LEFT},
+		'accept' => {key: ENTER, SPACE, gamepad: A},
+		'exit' => {key: ESCAPE, gamepad: B},
 	];
 
 	public static function justPressed(tag:String):Bool
 	{
+		final bind:Null<Bind> = binds.get(tag);
+
         if (FlxG.gamepads.lastActive != null) {
-            for (b in binds.get(tag))
-		        if (FlxG.gamepads.anyJustPressed(b.gamepad))
-			        return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_PRESSED);
+		    if (FlxG.gamepads.anyJustPressed(bind.gamepad))
+			    return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_PRESSED);
         } else {
-            for (b in binds.get(tag))
-                if (FlxG.keys.checkStatus(b.key, JUST_PRESSED))
-			        return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_PRESSED);
+            if (FlxG.keys.checkStatus(bind.key, JUST_PRESSED))
+			    return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_PRESSED);
         }
 
 		return false;
@@ -37,14 +37,14 @@ class Input
 
 	public static function pressed(tag:String):Bool
 	{
+        final bind:Null<Bind> = binds.get(tag);
+
         if (FlxG.gamepads.lastActive != null) {
-            for (b in binds.get(tag))
-		        if (FlxG.gamepads.anyJustPressed(b.gamepad))
-			        return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), PRESSED);
+		    if (FlxG.gamepads.anyJustPressed(bind.gamepad))
+			    return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), PRESSED);
         } else {
-            for (b in binds.get(tag))
-                if (FlxG.keys.checkStatus(b.key, PRESSED))
-			        return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), PRESSED);
+            if (FlxG.keys.checkStatus(bind.key, PRESSED))
+			    return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), PRESSED);
         }
 
 		return false;
@@ -52,14 +52,14 @@ class Input
 
 	public static function justReleased(tag:String):Bool
 	{
+        final bind:Null<Bind> = binds.get(tag);
+
         if (FlxG.gamepads.lastActive != null) {
-            for (b in binds.get(tag))
-		        if (FlxG.gamepads.anyJustPressed(b.gamepad))
-			        return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_RELEASED);
+		    if (FlxG.gamepads.anyJustPressed(bind.gamepad))
+			    return (binds.exists(tag)) ? true : FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_RELEASED);
         } else {
-            for (b in binds.get(tag))
-                if (FlxG.keys.checkStatus(b.key, JUST_RELEASED))
-			        return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_RELEASED);
+            if (FlxG.keys.checkStatus(bind.key, JUST_RELEASED))
+			    return (binds.exists(tag)) ? true : FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_RELEASED);
         }
 
 		return false;
