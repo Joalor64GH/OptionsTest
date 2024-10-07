@@ -23,19 +23,24 @@ class Input
 
 	public static function justPressed(tag:String):Bool
 	{
-		if (!binds.exists(tag))
-            return null;
-
         var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
         if (gamepad != null) {
-            for (i in 0...binds[tag].gamepad.length)
-		        if (gamepad.checkStatus(binds[tag].gamepad[i], JUST_PRESSED))
-			        return true /*FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_PRESSED)*/;
+			if (binds.exists(tag)) {
+            	for (i in 0...binds[tag].gamepad.length)
+		        	if (gamepad.checkStatus(binds[tag].gamepad[i], JUST_PRESSED))
+			        	return true;
+			} else {
+				return gamepad.checkStatus(FlxGamepadInputID.fromString(tag), JUST_PRESSED);
+			}
         } else {
-            for (i in 0...binds[tag].key.length)
-                if (FlxG.keys.checkStatus(binds[tag].key[i], JUST_PRESSED))
-			        return true /*FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_PRESSED)*/;
+			if (binds.exists(tag)) {
+            	for (i in 0...binds[tag].key.length)
+                	if (FlxG.keys.checkStatus(binds[tag].key[i], JUST_PRESSED))
+			        	return true;
+			} else {
+				return FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_PRESSED);
+			}
         }
 
 		return false;
@@ -43,19 +48,24 @@ class Input
 
 	public static function pressed(tag:String):Bool
 	{
-        if (!binds.exists(tag))
-            return null;
-
         var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
         if (gamepad != null) {
-            for (i in 0...binds[tag].gamepad.length)
-		        if (gamepad.checkStatus(binds[tag].gamepad[i], PRESSED))
-			        return true /*FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_PRESSED)*/;
+			if (binds.exists(tag)) {
+            	for (i in 0...binds[tag].gamepad.length)
+		        	if (gamepad.checkStatus(binds[tag].gamepad[i], PRESSED))
+			        	return true;
+			} else {
+				return gamepad.checkStatus(FlxGamepadInputID.fromString(tag), PRESSED);
+			}
         } else {
-            for (i in 0...binds[tag].key.length)
-                if (FlxG.keys.checkStatus(binds[tag].key[i], PRESSED))
-			        return true /*FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_PRESSED)*/;
+			if (binds.exists(tag)) {
+            	for (i in 0...binds[tag].key.length)
+                	if (FlxG.keys.checkStatus(binds[tag].key[i], PRESSED))
+			        	return true;
+			} else {
+				return FlxG.keys.checkStatus(FlxKey.fromString(tag), PRESSED);
+			}
         }
 
 		return false;
@@ -63,19 +73,24 @@ class Input
 
 	public static function justReleased(tag:String):Bool
 	{
-        if (!binds.exists(tag))
-            return null;
-
         var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
         if (gamepad != null) {
-            for (i in 0...binds[tag].gamepad.length)
-		        if (gamepad.checkStatus(binds[tag].gamepad[i], JUST_RELEASED))
-			        return true /*FlxG.gamepads.checkStatus(FlxGamepadInputID.fromString(tag), JUST_PRESSED)*/;
+			if (binds.exists(tag)) {
+            	for (i in 0...binds[tag].gamepad.length)
+		        	if (gamepad.checkStatus(binds[tag].gamepad[i], JUST_RELEASED))
+			        	return true;
+			} else {
+				return gamepad.checkStatus(FlxGamepadInputID.fromString(tag), JUST_RELEASED);
+			}
         } else {
-            for (i in 0...binds[tag].key.length)
-                if (FlxG.keys.checkStatus(binds[tag].key[i], JUST_RELEASED))
-			        return true /*FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_PRESSED)*/;
+			if (binds.exists(tag)) {
+            	for (i in 0...binds[tag].key.length)
+                	if (FlxG.keys.checkStatus(binds[tag].key[i], JUST_RELEASED))
+			        	return true;
+			} else {
+				return FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_RELEASED);
+			}
         }
 
 		return false;
