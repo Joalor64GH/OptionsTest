@@ -18,7 +18,7 @@ class OptionsState extends FlxState {
 	override function create() {
 		super.create();
 
-        options.push(new Option('Exit', OptionType.Function, function():Void {
+        options.push(new Option('Exit', "", OptionType.Function, function():Void {
             Sys.exit(0);
         }));
 
