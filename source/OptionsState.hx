@@ -4,13 +4,14 @@ import Option;
 
 class OptionsState extends FlxState {
 	var options:Array<Option> = [
-        new Option('Boolean', OptionType.Toggle, SaveData.settings.option1),
-        new Option('Int', OptionType.Integer(1, 10, 1), SaveData.settings.option2),
-        new Option('Options', OptionType.Choice(['easy', 'medium', 'hard']), SaveData.settings.option3),
-        new Option('Float', OptionType.Decimal(0, 1, 0.1), SaveData.settings.option4)
+        new Option('Boolean', "This is a boolean.", OptionType.Toggle, SaveData.settings.option1),
+        new Option('Int', "This is an integer.", OptionType.Integer(1, 10, 1), SaveData.settings.option2),
+        new Option('Options', "These are choices.", OptionType.Choice(['easy', 'medium', 'hard']), SaveData.settings.option3),
+        new Option('Float', "This is a decimal.", OptionType.Decimal(0, 1, 0.1), SaveData.settings.option4)
     ];
 	var grpOptions:FlxTypedGroup<FlxText>;
 	var curSelected:Int = 0;
+	var description:FlxText;
 
 	var camFollow:FlxObject;
 
@@ -33,6 +34,12 @@ class OptionsState extends FlxState {
 			optionTxt.ID = i;
 			grpOptions.add(optionTxt);
 		}
+
+		description = new FlxText(0, FlxG.height * 0.1, FlxG.width * 0.9, '', 28);
+		description.setFormat(Paths.font("vcr.ttf"), 28, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		description.screenCenter(X);
+		description.scrollFactor.set();
+		add(description);
 
 		changeSelection();
 
@@ -69,6 +76,13 @@ class OptionsState extends FlxState {
 			if (txt.ID == curSelected)
 				camFollow.y = txt.y;
 		});
+
+		var option = options[curSelected];
+
+		if (option.desc != null) {
+			description.text = option.desc;
+			description.screenCenter(X);
+		}
 	}
 
     private function changeValue(direction:Int = 0):Void {

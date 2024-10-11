@@ -14,14 +14,16 @@ enum OptionType
 class Option
 {
 	public var name:String;
+	public var desc:String;
 	public var type:OptionType;
 	public var value:Dynamic;
 	public var showPercentage:Bool = false;
 	public var onChange:Dynamic->Void;
 
-	public function new(name:String, type:OptionType, value:Dynamic):Void
+	public function new(name:String, desc:String, type:OptionType, value:Dynamic):Void
 	{
 		this.name = name;
+		this.desc = desc;
 		this.type = type;
 		this.value = value;
 	}
