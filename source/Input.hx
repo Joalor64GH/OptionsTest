@@ -93,23 +93,23 @@ class Input {
 
 	public static function anyJustPressed(tags:Array<String>):Bool {
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
-		for (i in 0...tags.length) {
+		
+		for (tag in tags) {
 			if (gamepad != null) {
-				if (binds.exists(tags[i])) {
-					for (i in 0...binds[tags[i]].gamepad.length)
-						if (gamepad.anyJustPressed([binds[tags[i]].gamepad[i]]))
+				if (binds.exists(tag)) {
+					for (i in 0...binds[tag].gamepad.length)
+						if (gamepad.checkStatus(binds[tag].gamepad[i], JUST_RELEASED))
 							return true;
 				} else {
-					return gamepad.anyJustPressed([FlxGamepadInputID.fromString(tags[i])]);
+					return gamepad.checkStatus(FlxGamepadInputID.fromString(tag), JUST_RELEASED);
 				}
 			} else {
-				if (binds.exists(tags[i])) {
-					for (i in 0...binds[tags[i]].key.length)
-						if (FlxG.keys.anyJustPressed([binds[tags[i]].key[i]]))
+				if (binds.exists(tag)) {
+					for (i in 0...binds[tag].key.length)
+						if (FlxG.keys.checkStatus(binds[tag].key[i], JUST_RELEASED))
 							return true;
 				} else {
-					return FlxG.keys.anyJustPressed([FlxKey.fromString(tags[i])]);
+					return FlxG.keys.checkStatus(FlxKey.fromString(tag), JUST_RELEASED);
 				}
 			}
 		}
