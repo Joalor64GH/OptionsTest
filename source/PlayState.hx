@@ -16,5 +16,8 @@ class PlayState extends FlxState {
 
 		if (Input.justPressed('o'))
 			FlxG.switchState(new OptionsState());
+
+		if (Input.anyJustPressed(['left', 'right']))
+			FlxG.switchState(new OptionsState());
 	}
 }

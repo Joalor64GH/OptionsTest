@@ -90,4 +90,30 @@ class Input {
 
 		return false;
 	}
+
+	public static function anyJustPressed(tags:Array<String>):Bool {
+		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
+
+		for (i in 0...tags.length) {
+			if (gamepad != null) {
+				if (binds.exists(tags[i])) {
+					for (i in 0...binds[tags[i]].gamepad.length)
+						if (gamepad.anyJustPressed([binds[tags[i]].gamepad[i]]))
+							return true;
+				} else {
+					return gamepad.anyJustPressed(FlxGamepadInputID.fromString(tags[i]));
+				}
+			} else {
+				if (binds.exists(tags[i])) {
+					for (i in 0...binds[tags[i]].key.length)
+						if (FlxG.keys.anyJustPressed([binds[tag].key[i]]))
+							return true;
+				} else {
+					return FlxG.keys.anyJustPressed(FlxKey.fromString(tags[i]));
+				}
+			}
+		}
+
+		return false;
+	}
 }
