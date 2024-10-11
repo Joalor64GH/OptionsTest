@@ -101,15 +101,15 @@ class Input {
 						if (gamepad.anyJustPressed([binds[tags[i]].gamepad[i]]))
 							return true;
 				} else {
-					return gamepad.anyJustPressed(FlxGamepadInputID.fromString(tags[i]));
+					return gamepad.anyJustPressed([FlxGamepadInputID.fromString(tags[i])]);
 				}
 			} else {
 				if (binds.exists(tags[i])) {
 					for (i in 0...binds[tags[i]].key.length)
-						if (FlxG.keys.anyJustPressed([binds[tag].key[i]]))
+						if (FlxG.keys.anyJustPressed([binds[tags[i]].key[i]]))
 							return true;
 				} else {
-					return FlxG.keys.anyJustPressed(FlxKey.fromString(tags[i]));
+					return FlxG.keys.anyJustPressed([FlxKey.fromString(tags[i])]);
 				}
 			}
 		}
